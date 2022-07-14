@@ -132,6 +132,7 @@ public class RadioTest {
         radio.increaseVolume();
         radio.increaseVolume();
         radio.increaseVolume();
+        radio.increaseVolume();
 
         int expected = 10;
         int actual = radio.getCurrentVolume();
