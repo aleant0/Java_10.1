@@ -111,7 +111,19 @@ public class RadioTest {
 
         radio.increaseVolume();
 
-        int expected = 6;
+        int expected = 51;
+        int actual = radio.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldReduceVolume() {
+        Radio radio = new Radio();
+
+        radio.reduceVolume();
+
+        int expected = 49;
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -121,20 +133,11 @@ public class RadioTest {
     public void shouldNotToIncreaseVolumeAboveMax() {
         Radio radio = new Radio();
 
-      /*  for(int i = 0; i > 5; i++) {
+        for (int i = 0; i < 50; i++) {
             radio.increaseVolume();
         }
-            Через цилк не работает. Не могу понять, почему
 
-       */
-        radio.increaseVolume();
-        radio.increaseVolume();
-        radio.increaseVolume();
-        radio.increaseVolume();
-        radio.increaseVolume();
-        radio.increaseVolume();
-
-        int expected = 10;
+        int expected = 100;
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -144,16 +147,22 @@ public class RadioTest {
     public void shouldNotToReduceVolumeBelowMin() {
         Radio radio = new Radio();
 
-        radio.reduceVolume();
-        radio.reduceVolume();
-        radio.reduceVolume();
-        radio.reduceVolume();
-        radio.reduceVolume();
-        radio.reduceVolume();
-
+        for (int i = 0; i < 50; i++) {
+            radio.reduceVolume();
+        };
 
         int expected = 0;
         int actual = radio.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldChangeStationsAmount() {
+        Radio radio = new Radio(20);
+
+        int expected = 20;
+        int actual = radio.getStationsAmount();
 
         Assertions.assertEquals(expected, actual);
     }
